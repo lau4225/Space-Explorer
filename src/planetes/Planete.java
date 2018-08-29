@@ -46,6 +46,7 @@ public class Planete {
         System.out.println();
         System.out.println("Vous visitez la planète " + this.nom);
 
+        undo.setAttaque(false);
 
         int attaque = (int) (Math.random()*5);
 
@@ -67,23 +68,31 @@ public class Planete {
                 undo.setAttaque(true);
                 v.setVie(v.getVie()-25);
                 if (v.getVie()<0){
-                    v.setVie(0); }
+                    v.setVie(0);
+                    System.out.println();
+                    System.out.println("Votre vaisseau n'a plus de vie :(");
+                    System.out.println();
+                    Main.gameOver = true;
+                }
             }
 
-            int nb = (int) (Math.random()*objetsDispo.size());
-            System.out.println("Vous découvrez " + objetsDispo.get(nb).getNom());
+            if (Main.gameOver==false){
+                int nb = (int) (Math.random()*objetsDispo.size());
+                System.out.println("Vous découvrez " + objetsDispo.get(nb).getNom());
 
-            try {
-                if (this.objetsDispo.get(nb).getNom().equals("des Ciseaux")){ v.inventaire.add(new Ciseaux()); }
-                else if (this.objetsDispo.get(nb).getNom().equals("une Drill")){ v.inventaire.add(new Drill()); }
-                else if (this.objetsDispo.get(nb).getNom().equals("une paire de Gants")){ v.inventaire.add(new Gants()); }
-                else if (this.objetsDispo.get(nb).getNom().equals("des Lunettes")){ v.inventaire.add(new Lunettes()); }
-                else if (this.objetsDispo.get(nb).getNom().equals("une Scie")){ v.inventaire.add(new Scie()); }
-            }catch (NullPointerException e){
-                System.out.println("Exception lancée");
+                try {
+                    if (this.objetsDispo.get(nb).getNom().equals("des Ciseaux")){ v.inventaire.add(new Ciseaux()); }
+                    else if (this.objetsDispo.get(nb).getNom().equals("une Drill")){ v.inventaire.add(new Drill()); }
+                    else if (this.objetsDispo.get(nb).getNom().equals("une paire de Gants")){ v.inventaire.add(new Gants()); }
+                    else if (this.objetsDispo.get(nb).getNom().equals("des Lunettes")){ v.inventaire.add(new Lunettes()); }
+                    else if (this.objetsDispo.get(nb).getNom().equals("une Scie")){ v.inventaire.add(new Scie()); }
+                }catch (NullPointerException e){
+                    System.out.println("Exception lancée");
+                }
+
+                this.objetsDispo.remove(nb);
             }
 
-            this.objetsDispo.remove(nb);
         }
     }
 

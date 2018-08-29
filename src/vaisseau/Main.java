@@ -7,13 +7,10 @@ import java.util.Stack;
 
 public class Main {
 
-    /*
-    pu de vie
-     */
 
     public static Scanner sc = new Scanner(System.in);
     public static Planete[] tabPlanetes = new Planete[5];
-    public static Vaisseau nostromo = new Vaisseau(30, 100);
+    public static Vaisseau nostromo = new Vaisseau(100, 100);
     public static Vaisseau undo = new Vaisseau(0,0);
     public static boolean gameOver = false;
 
